@@ -17,6 +17,7 @@ const playMusic = () => {
   music.play();
   play.classList.replace("fa-play", "fa-pause");
   img.classList.add("rotating");
+  setInterval(createBubbleAnimation, 600);
 };
 // pause functionality
 const pauseMusic = () => {
@@ -96,6 +97,21 @@ ProgressDiv.addEventListener("click", (event) => {
 });
 //  if music end so call next song
 music.addEventListener("ended", nextSong);
-
 next.addEventListener("click", nextSong);
 prev.addEventListener("click", prevSong);
+
+//create bubble animation
+function createBubbleAnimation() {
+  const mainDiv = document.querySelector(".main_div");
+  const createElement = document.createElement("span");
+  var size = 42;
+  createElement.style.width = 20 + size + "px";
+  createElement.style.height = 20 + size + "px";
+  createElement.style.top = Math.random() * innerWidth + "px";
+  createElement.style.left = Math.random() * innerWidth + "px";
+
+  mainDiv.appendChild(createElement);
+  setTimeout(() => {
+    createElement.remove();
+  }, 4000);
+}
